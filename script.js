@@ -14,6 +14,8 @@ let intervalo
 function milliseconds() {
     milliNum++
     if (milliNum < 10) {
+        milli.innerHTML = '00' + milliNum
+    } else if (milliNum >= 10 || milliNum <= 99){
         milli.innerHTML = '0' + milliNum
     } else {
         milli.innerHTML = milliNum
@@ -62,7 +64,7 @@ function reset() {
     milliNum = 0
     secNum = 0
     minNum = 0
-    milli.innerHTML = '00'
+    milli.innerHTML = '000'
     sec.innerHTML = '00'
     min.innerHTML = '00'
   }
