@@ -1,3 +1,4 @@
+<img src="./assets/mockup.png">
 <div align=center>
 <h1>CRONÔMETRO</h1>
 </div>
