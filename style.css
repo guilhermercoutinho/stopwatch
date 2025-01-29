@@ -11,11 +11,11 @@ body {
   background: #192939;
   color: #1f1f1f;
   text-align: center;
-  letter-spacing: 2px;  
+  letter-spacing: 2px;
 }
 
 h1 {
-	color: #BAFB00;
+  color: #bafb00;
   margin-bottom: 30px;
 }
 
@@ -41,21 +41,21 @@ main {
   user-select: none;
 }
 
-.time {
+.display {
   font-size: 2rem;
   font-weight: bolder;
   text-align: center;
   padding: 10px;
   margin: 10px 0;
-  width: 190px;
+  max-width: 130px;
+
+  h2 {
+    position: relative;
+  }
 }
 
 .milliseconds {
   font-size: 1rem;
-}
-
-h2 {
-  position: relative;
 }
 
 button {
@@ -71,17 +71,17 @@ button {
   cursor: pointer;
   outline: none;
   box-shadow: 0px 2px 3px rgba(26, 42, 58, 0.9);
-}
 
-button:hover {
-  transition: 100ms;
-  transform: scale(1.02);
-}
+  &:hover {
+    transition: 100ms;
+    transform: scale(1.02);
+  }
 
-button:active {
-  transition: none;
-  transform: scale(0.98);
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  &:active {
+    transition: none;
+    transform: scale(0.98);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+  }
 }
 
 footer {
@@ -95,14 +95,14 @@ footer {
 
   margin: auto auto;
   padding: 10px 5px;
-}
 
-p {
-  color: #fff;
-}
+  p {
+    color: #fff;
+  }
 
-a {
-  text-decoration: none;
-  color: #BAFB00;
-  cursor: pointer;
+  a {
+    text-decoration: none;
+    color: #bafb00;
+    cursor: pointer;
+  }
 }
