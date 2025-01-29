@@ -1,84 +1,85 @@
 const startStopBtn = document.querySelector(".start-stop");
-const stoptButton = document.querySelector(".stop");
-const resettButton = document.querySelector(".reset");
+const resetBtn = document.querySelector(".reset");
+const markBtn = document.querySelector(".mark");
+const markList = document.getElementById("mark-list");
 
 const txtMilliseconds = document.querySelector(".milliseconds");
 const txtSeconds = document.querySelector(".seconds");
 const txtMinutes = document.querySelector(".minutes");
 
-let milliNum = 0;
-let secNum = 0;
-let minNum = 0;
-let intervalo;
+let milliseconds = 0;
+let seconds = 0;
+let minutes = 0;
+let interval;
 
 let isRunning = true;
 
-function milliseconds() {
-  milliNum++;
-  if (milliNum < 10) {
-    txtMilliseconds.innerHTML = "00" + milliNum;
-  } else if (milliNum >= 10 || milliNum <= 99) {
-    txtMilliseconds.innerHTML = "0" + milliNum;
-  } else {
-    txtMilliseconds.innerHTML = milliNum;
+function calcMilliseconds() {
+  milliseconds++;
+  if (milliseconds < 10) {
+    txtMilliseconds.innerHTML = "0" + milliseconds;
+  } else if (milliseconds >= 10 || milliseconds <= 99) {
+    txtMilliseconds.innerHTML = milliseconds;
   }
 
-  if (milliNum === 99) {
-    milliNum = 0;
-    seconds();
+  if (milliseconds === 99) {
+    milliseconds = 0;
+    calcSeconds();
   }
 }
 
-function seconds() {
-  secNum++;
-  if (secNum < 10) {
-    txtSeconds.innerHTML = "0" + secNum;
-  } else {
-    txtSeconds.innerHTML = secNum;
-  }
+function calcSeconds() {
+  seconds++;
+  seconds < 10
+    ? (txtSeconds.innerHTML = "0" + seconds)
+    : (txtSeconds.innerHTML = seconds);
 
-  if (secNum === 59) {
-    secNum = 0;
-    minutes();
+  if (seconds === 59) {
+    seconds = 0;
+    calcMinutes();
   }
 }
 
-function minutes() {
-  minNum++;
-  if (minNum < 10) {
-    txtMinutes.innerHTML = "0" + minNum;
-  } else {
-    txtMinutes.innerHTML = minNum;
-  }
+function calcMinutes() {
+  minutes++;
+  minutes < 10
+    ? (txtMinutes.innerHTML = "0" + minutes)
+    : (txtMinutes.innerHTML = minutes);
 }
 
-function start() {
+function startStop() {
   isRunning = !isRunning;
 
   if (isRunning) {
-    clearInterval(intervalo);
+    clearInterval(interval);
     startStopBtn.textContent = "INICIAR";
   } else {
-    intervalo = setInterval(() => {
-      milliseconds();
+    interval = setInterval(() => {
+      calcMilliseconds();
     }, 10);
     startStopBtn.textContent = "PARAR";
   }
 }
 
-const stop = () => clearInterval(intervalo);
-
 function reset() {
-  clearInterval(intervalo);
-  milliNum = 0;
-  secNum = 0;
-  minNum = 0;
-  txtMilliseconds.innerHTML = "000";
+  clearInterval(interval);
+
+  milliseconds = 0;
+  seconds = 0;
+  minutes = 0;
+  txtMilliseconds.innerHTML = "00";
   txtSeconds.innerHTML = "00";
   txtMinutes.innerHTML = "00";
-  startStopBtn.textContent = "INICIAR";
+  startStopBtn.innerHTML = "INICIAR";
+  markList.innerHTML = "";
 }
 
-startStopBtn.addEventListener("click", start);
-stoptButton.addEventListener("click", stop);
-resettButton.addEventListener("click", reset);
+function mark() {
+  const markItem = document.createElement("li");
+  markItem.innerHTML = `${txtMinutes.innerHTML}:${txtSeconds.innerHTML}.<span class="mark-span">${txtMilliseconds.innerHTML}</span>`;
+  markList.appendChild(markItem);
+}
+
+startStopBtn.addEventListener("click", startStop);
+resetBtn.addEventListener("click", reset);
+markBtn.addEventListener("click", mark);
